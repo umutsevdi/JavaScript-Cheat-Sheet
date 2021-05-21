@@ -1,5 +1,3 @@
-# JavaScript Essentials -1
-
 # 1.0 - Declarations
 In JavaScript values are hold in declarations which operates similar to pointers. Each of those declerations are made with the type name followed by an identifier. In JavaScript a declaration can be made by one of three operators which are : 
 * var : function scoped definition
@@ -302,7 +300,7 @@ let x = returnExample();
 
 ```
 
-#### 1.1.2.4 Function Defaults : 
+#### 1.1.2.4.1 Function Defaults : 
 In ES2015 ( ES6 ) `Function Defaults` was introduced to JavaScript which allows you to create default properties for functions in case they are not defined when the function is called.
 
 ```js
@@ -323,6 +321,16 @@ function angle(x = 0.2, y = 1-x,  z = y-x) {
 }
 
 angle(); // 0.096
+```
+#### 1.1.2.4.2 Functions with Rest Parameter : 
+* Objects and arrays have a special `Spread Opearator(...)` that allows object properties to iterate. See `Spread Operator` in `Arrays` for more example.
+* This operator can be used as an argument for functions.
+```js
+function printArgs(...args) {
+    console.log(args); // 
+}
+printArgs(3,4,5); // [3 , 4 , 5]
+printArgs(2); // [2]
 ```
 ### 1.1.2.5 - Arrays
 
@@ -367,6 +375,41 @@ a number, an object, a string and one function
 
 ```
 * To see the number of elements in the array use `arrayName.length`.
+* Arrays can be iterated with different ways : 
+     ```js
+    const fruits = ["apple", "orange", "cherry"];
+
+     for (let i = 0; i < fruits.length; i++) {
+        console.log(i,fruits[i]);
+    }
+    //0 apple
+    //1 orange
+    //2 cherry
+    fruits.forEach(function(item,index){
+        console.log(index,item)
+    });
+    //0 apple
+    //1 orange
+    //2 cherry
+
+    for (const item of fruits) {
+        console.log(item); 
+    }
+    //apple
+    //orange
+    //cherry
+    ```
+* Arrays have a special `Spread Opearator(...)` that allows array to iterate.
+```js
+const array = ["Hi ","How ","are ","you ","? "];
+console.log(...array); // Hi How are you ?
+```
+  * `...` operator can be used to embed array in another array.
+```js
+const array = [1,3,5];
+var arrayBig = [...arr, 2 , 4 , 6 ],
+console.log(arrayBig); // [ 1 , 3 , 5 ,2 ,4 ,6]
+```
 #### 1.1.2.5.1 - Other Array Functions : 
 
 | Method                  | Description                                                                                                                    |
@@ -490,7 +533,52 @@ console.log( obj.name + "\t" + obj.id + "\t" + obj.number ); //Object 123   150 
     myObject.hello = function () { console.log(" Hello World! "); }
     myObject.hello(); // Hello World!
 ```	
-	
+* Objects have a special `Spread Opearator(...)` that allows object properties to iterate. See `Spread Operator` in `Arrays` for more example.
+```js
+const obj1 = { x : 1, y : 2 };
+const obj2 = {..obj1, z : 3};
+console.log( ...obj2 ) // {x : 1 , y : 2 , z : 3}
+```
+* Literal objects can be iterated with their properties.
+    ```js
+    const myObject = {
+        name : "objectName",
+        age : 15,
+        id : 123
+    }
+    for (let key in myObject) {
+    console.log(key, yourobject[key]); 
+    }
+    //name objectName
+    //age 15
+    //id 123
+    ```
+    * After ES6(2015) a key,value pair version of for was added. This allows you to directly access to values.
+    ```js
+    for (let [key, value] of Object.entries(myObject)) {
+        console.log(key, value);
+    }
+    //name objectName
+    //age 15
+    //id 123
+    ```
+    * `Object.keys(objectName).forEach(function)` is another way to iterate:
+    ```js 
+    Object.keys(myObject).forEach((key, value) => {
+        console.log(key,value);
+        
+    });
+    //name objectName
+    //age 15
+    //id 123
+    Object.keys(myObject).forEach(function(key, value) {
+        console.log(key,value);
+    });
+    //name objectName
+    //age 15
+    //id 123
+    ```
+
 ### 1.1.2.6.1 - Constructors :
 * Constructor is used to define objects with predefined and reusable properties.
 
@@ -524,7 +612,7 @@ object2.name = "object 2";
 console.log(object1.name + object2.name ); // object2 object2
 ```
 
-#### 1.1.2.6.1.2 Adding Property to an Object :
+#### 1.1.2.6.2 Adding Property to an Object :
  * Lets add a function or a property to person1 fromprevious example.
 ```js
 function Person(name , job , age) {
@@ -542,8 +630,7 @@ person1.myFunction(); // Hi
 person2.myFuntion(); // Uncaught TypeError: person2.myFunction is not a function
 ```
 * As you see from the example constructors do not share properties added after the definition.
-
-#### 1.1.2.6.1.3 Prototypes :
+#### 1.1.2.6.1.4 Prototypes :
 * If you would like to add a function or a property to all previously created objects, you can use `prototype`. Prototype allows you to make additions and changes to the constructor function.
 
 ```js
@@ -573,7 +660,7 @@ JavaScript has also built in constructors which are :
   
 However it is recommended to use primitive types instead of built-in constructors.
 
-#### 1.1.2.6.1.4 Classes :
+#### 1.1.2.6.1.5 Classes :
 In ES2015(ES6) `class` was added to JavaScript which behaves the same with `class` from `Java` programming language.
 ```js
 class Person {
@@ -583,3 +670,80 @@ class Person {
 }
 const person1 = new Person('John');
 ```  
+
+#### 1.1.2.6.1.6 Getters & Setters :
+Objects can not only provide properties but also can modify how user can interract with them.
+
+However to access them, you must use them as a property rather than a function.
+
+```js
+const object = {
+
+    id: '157',
+    get getId() {
+        return this.id;
+    }
+    set setId(id) {
+        this.id = id;
+    }
+};
+object.getId; // 157
+object.id; // 157
+object.getId(); // Error
+object.setId = "110";
+object.getId;  // 110
+```
+
+#### 1.1.2.6.1.7 Object Define Property : 
+`Object.defineProperty()` method is also another way to define getter & setters.
+
+```js
+const object = {
+    id: '157',
+};
+Object.defineProperty(object, "getId", {
+    get : function () {
+        return this.id;
+    }
+});
+Object.defineProperty(object, "setId", {
+    set : function (id) {
+        this.id = id;
+    }
+});
+```
+### 1.1.2.7 - Maps : 
+Maps behave similar to objects, the only difference is their keys have no type restriction.
+* You can access map elements by using `mapName.get(key)` function.
+* You can define or change map elements by using `mapName.set(key,value)` function.
+```js
+let myMap = new Map();
+myMap.set("String Key", 15);
+myMap.set(129,7);
+let object = {};
+myMap.set(object,"can be key");
+```
+* To remove an element use `mapName.delete(key)`. `delete(key)`returns `true` if given key has been found.
+* To remove all elements use `mapName.clear()`.
+* To get the size of a map use `mapName.size`.
+* To iterate over a map use `forEach()` or `for of`.
+```js
+let map = new Map();
+map1.set("Jack", {age : 40 , job : "web developer"});
+map1.set("John", {age : 15 , job : "unemployed"});
+
+for (let [key, value] of map) {
+    console.log(key + '- ' + value);
+} // Jack - {age : 40 , job : web developer}
+  // John - {age : 15 , job : unemployed}
+
+map.forEach(function(value, key) {
+  console.log(key + '- ' + value)
+}) // Jack - {age : 40 , job : web developer}
+   // John - {age : 15 , job : unemployed}
+
+for (let key of map.keys()) {
+  console.log(key)
+} //Jack
+  //John
+```
