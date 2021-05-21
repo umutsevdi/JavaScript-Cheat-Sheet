@@ -1,10 +1,10 @@
-# 1.0 - Declarations
+# 1 - Declarations
 In JavaScript values are hold in declarations which operates similar to pointers. Each of those declerations are made with the type name followed by an identifier. In JavaScript a declaration can be made by one of three operators which are : 
 * var : function scoped definition
 * const : block scoped definition, can not be changed once initialized
 * let : block scopped definition
 
-## 1.0.1 - Variable : 
+## 1.1 - Variable : 
 Variable can be optionally initialized and can be used even before the initialization unlike most of the programming languages : 
 ```js
     var x;
@@ -13,13 +13,13 @@ Variable can be optionally initialized and can be used even before the initializ
     typeof(x); //number
 ```
 
-## 1.0.2 - Constant : 
+## 1.2 - Constant : 
 Constant is a value that can not be changed once initialized. 
 ```js
     const x = 20;
 ```
 
-## 1.0.3 - Let : 
+## 1.3 - Let : 
 Let can be optionally initialized and can be used even before the initialization unlike most of the programming languages : 
 ```js
     let  x;
@@ -28,7 +28,7 @@ Let can be optionally initialized and can be used even before the initialization
     typeof(x); //number
 ```
 
-# 1.1 Data Types
+# 2 Data Types
 
 The latest ECMAScript standard defines eight data types which are :
 * undefined
@@ -56,7 +56,6 @@ x = function(){
 console.log(typeof(x)) //function
 ```
 
-## 1.1.1 - Data Type Conversion : 
 * When a string and a number is used with `+` operator , number is converted to string.
     ```js
     var x = 50;
@@ -77,7 +76,7 @@ console.log(typeof(x)) //function
     parseInt("100" , 2); // 4;
     Number("16"); // 16;
     ```
-### 1.1.1.1 - Data Type Conversion Values :
+## 2.0 - Data Type Conversion Values :
 | Value     | Number | String      | Boolean |
 | --------- | ------ | ----------- | ------- |
 | 1         | 1      | "1"         | true    |
@@ -95,21 +94,20 @@ console.log(typeof(x)) //function
 Inside a function you can use this line of code to place a valid data type to a variable.
 ```js
 b = typeof b !== 'undefined' ?  b : 1;
-```
-## 1.1.2 - Data Types : 
-### 1.1.2.1 Strings 
+``` 
+## 2.1 Strings 
 * You can access an element of a string just like using arrays.
-```js
-    let myString="Hello World";
-    console.log(myString[1]); //e
-    console.log(myString.charAt(4)); //o
-```
+    ```js
+        let myString="Hello World";
+        console.log(myString[1]); //e
+        console.log(myString.charAt(4)); //o
+    ```
 * However you can not change a character in string.
-```js
-    let myString="Hello World";
-    myString[0]="h";
-    console.log(myString); // Hello World
-```
+    ```js
+        let myString="Hello World";
+        myString[0]="h";
+        console.log(myString); // Hello World
+    ```
 
 | Method                                       | Description                                             |
 | -------------------------------------------- | ------------------------------------------------------- |
@@ -150,7 +148,7 @@ const result5= text1.slice(1, 3);
 console.log(result5); // "el"
 ```
 
-#### 1.1.2.1.4.2 - Strings Commands	
+### 2.1.1 - Strings Commands	
 | Code | Output               |
 | ---- | -------------------- |
 | \"   | include double quote |
@@ -162,7 +160,7 @@ console.log(result5); // "el"
 | \b   | backspace            |
 | \f   | form feed            |
 
-### 1.1.2.2 - Numbers
+## 2.2 - Numbers
 * There are certain definitions in numbers which are : 
   * NaN : not a number,  is a keyword that indicates that the value is not a number.
     ```js
@@ -196,7 +194,7 @@ console.log(result5); // "el"
 | toLocaleString()              | returns a string with a language sensitive representation of a number |
 
 
-Constants : 
+### 2.2.1 Constants : 
 * EPSILON :	returns the smallest interval between two representable numbers
 * MAX_SAFE_INTEGER :	returns the maximum safe integer
 * MAX_VALUE	returns : the largest possible value
@@ -206,7 +204,7 @@ NaN	represents 'Not-a-Number' value
 * NEGATIVE_INFINITY :	represents negative infinity
 * POSITIVE_INFINITY :	represents positive infinity
 	
-### 1.1.2.3 - Symbols
+## 2.3 - Symbols
 Symbols are immutable (cannot be changed) and are unique. For example : 
 ```js
 const value1 = Symbol('hello');
@@ -235,7 +233,7 @@ let myObj={
 | valueOf()  | Returns the primitive value of the Symbol object.            |
 	
 	
-Symbol Properties
+### 2.3.1 Symbol Properties
 * asyncIterator	Returns the default AsyncIterator for an object
 * hasInstance	Determines if a constructor object recognizes an object as its instance
 * isConcatSpreadable	Indicates if an object should be flattened to its array elements
@@ -250,7 +248,7 @@ Symbol Properties
 * toStringTag	Gives the default description of an object
 * description	Returns a string containing the description of the symbol	
 	
-### 1.1.2.4 - Functions
+## 2.4 - Functions
 
 * A function is a block of code that performs a specific task.
 * Functins can be defined in various ways : 
@@ -300,7 +298,7 @@ let x = returnExample();
 
 ```
 
-#### 1.1.2.4.1 Function Defaults : 
+### 2.4.1 Function Defaults : 
 In ES2015 ( ES6 ) `Function Defaults` was introduced to JavaScript which allows you to create default properties for functions in case they are not defined when the function is called.
 
 ```js
@@ -322,7 +320,7 @@ function angle(x = 0.2, y = 1-x,  z = y-x) {
 
 angle(); // 0.096
 ```
-#### 1.1.2.4.2 Functions with Rest Parameter : 
+#### 2.4.2 Functions with Rest Parameter : 
 * Objects and arrays have a special `Spread Opearator(...)` that allows object properties to iterate. See `Spread Operator` in `Arrays` for more example.
 * This operator can be used as an argument for functions.
 ```js
@@ -332,7 +330,21 @@ function printArgs(...args) {
 printArgs(3,4,5); // [3 , 4 , 5]
 printArgs(2); // [2]
 ```
-### 1.1.2.5 - Arrays
+### 2.4.3 Closures : 
+In JavaScript functions are a data type just like any other primitives, which allows definition of functions within functions.
+```js
+function calculate(num1){
+    function sum(num2){
+        return num1+num2;
+    }
+    return sum(num1+num2);  
+}
+
+const result = calculate(4); 
+console.log(result); // function sum(num2){return num1+num2}
+console.log(result(5)); // 9
+```
+## 2.5 - Arrays
 
 Arrays are a type of object that contains multiple objects. Unlike arrays in other programming 
 languages they behave similar to lists. New values can be added or existing ones can be removed. 
@@ -374,6 +386,14 @@ a number, an object, a string and one function
     console.log(myArray); // ["b"];
 
 ```
+* Property values can be swapped with `Array Swapping`.
+    ```js
+    let x = 4;
+    let y = 5;
+    [x,y] = [y,x];
+    console.log(x,y); // 5 4
+
+    ```
 * To see the number of elements in the array use `arrayName.length`.
 * Arrays can be iterated with different ways : 
      ```js
@@ -410,7 +430,7 @@ const array = [1,3,5];
 var arrayBig = [...arr, 2 , 4 , 6 ],
 console.log(arrayBig); // [ 1 , 3 , 5 ,2 ,4 ,6]
 ```
-#### 1.1.2.5.1 - Other Array Functions : 
+### 2.5.1 - Other Array Functions : 
 
 | Method                  | Description                                                                                                                    |
 | ----------------------- | ------------------------------------------------------------------------------------------------------------------------------ |
@@ -450,7 +470,7 @@ console.log(arrayBig); // [ 1 , 3 , 5 ,2 ,4 ,6]
         return typeof (key) == "number"; //returns an array that that has true for each element that is number and false if otherwise
     })
 ```
-#### 1.1.2.5.3 - Multidimensional Arrays	
+### 2.5.6 - Multidimensional Arrays	
 * You can define multidimensional arrays like this : 
 ```js
     let studentsData = [['Jack', 24], ['Sara', 23], ['Peter', 24]];
@@ -467,7 +487,7 @@ console.log(arrayBig); // [ 1 , 3 , 5 ,2 ,4 ,6]
     console.log(studentsData); //[["Jack", 24], ["Sara", 23,"hello"], ["Peter", 24]
 ```
 
-### 1.1.2.6 - Objects
+## 2.6 - Objects
 Unlike other programming languages, objects do not require a class to be created. They can be defined, assigned and changed freely.
 
 ```js
@@ -578,8 +598,16 @@ console.log( ...obj2 ) // {x : 1 , y : 2 , z : 3}
     //age 15
     //id 123
     ```
-
-### 1.1.2.6.1 - Constructors :
+* Object values can be quickly assigned with `destructuring assignments`.
+    ```js
+    const person = {
+        name: 'Sara',
+        age: 25,
+        gender: 'female'    
+    }
+    let { name, age, gender } = person;
+    ``` 
+### 2.6.1 - Constructors :
 * Constructor is used to define objects with predefined and reusable properties.
 
 ```js
@@ -597,7 +625,7 @@ const person1 = new Person("Umut", "Student", 21);
 const person2 = new Person("John", "Politician", 49);
 console.log( person1.toString() ); // Person = [ name = Umut job = Student age = 21 ]
 ```
-#### 1.1.2.6.1.1 Constructors vs Literal Objects : 
+#### 2.6.1.1 Constructors vs Literal Objects : 
 * Literal objects are generally used to define a single object. The constructors are used to defined multiple objects.
 * Each object defined with constructor function is unique which means they can have different values for properties.
 * Which means defining a spesific function or a property for an object created with a constructor means, it will be unique to that instance.
@@ -612,7 +640,7 @@ object2.name = "object 2";
 console.log(object1.name + object2.name ); // object2 object2
 ```
 
-#### 1.1.2.6.2 Adding Property to an Object :
+### 2.6.2 Adding Property to an Object :
  * Lets add a function or a property to person1 fromprevious example.
 ```js
 function Person(name , job , age) {
@@ -630,7 +658,7 @@ person1.myFunction(); // Hi
 person2.myFuntion(); // Uncaught TypeError: person2.myFunction is not a function
 ```
 * As you see from the example constructors do not share properties added after the definition.
-#### 1.1.2.6.1.4 Prototypes :
+### 2.6.3 Prototypes :
 * If you would like to add a function or a property to all previously created objects, you can use `prototype`. Prototype allows you to make additions and changes to the constructor function.
 
 ```js
@@ -660,7 +688,7 @@ JavaScript has also built in constructors which are :
   
 However it is recommended to use primitive types instead of built-in constructors.
 
-#### 1.1.2.6.1.5 Classes :
+### 2.6.4 Classes :
 In ES2015(ES6) `class` was added to JavaScript which behaves the same with `class` from `Java` programming language.
 ```js
 class Person {
@@ -671,7 +699,7 @@ class Person {
 const person1 = new Person('John');
 ```  
 
-#### 1.1.2.6.1.6 Getters & Setters :
+#### 2.6.4.1 Getters & Setters :
 Objects can not only provide properties but also can modify how user can interract with them.
 
 However to access them, you must use them as a property rather than a function.
@@ -694,7 +722,7 @@ object.setId = "110";
 object.getId;  // 110
 ```
 
-#### 1.1.2.6.1.7 Object Define Property : 
+#### 2.6.4.2 Object Define Property : 
 `Object.defineProperty()` method is also another way to define getter & setters.
 
 ```js
@@ -712,7 +740,22 @@ Object.defineProperty(object, "setId", {
     }
 });
 ```
-### 1.1.2.7 - Maps : 
+#### 2.6.4.3 Class Inheritance :
+```js
+class User { 
+    constructor(name) {
+        this.name = name;
+    }
+}
+class Student extends User {
+ constructor(name,id) {
+    console.log("Creating student class");
+    this.id = id;
+    super(name);
+    }
+}
+``` 
+## 2.7 - Maps : 
 Maps behave similar to objects, the only difference is their keys have no type restriction.
 * You can access map elements by using `mapName.get(key)` function.
 * You can define or change map elements by using `mapName.set(key,value)` function.
@@ -747,3 +790,224 @@ for (let key of map.keys()) {
 } //Jack
   //John
 ```
+## 2.8 - Sets : 
+Sets behave similar to arrays but unlike arrays, set values can not be duplicate.
+Just like arrays, sets can store different data types.
+
+```js
+const set = new Set([1, 2, 3]);
+console.log(set.values()); // Set Iterator [1, 2, 3]
+```
+* Sets have following functions to handle the data.
+
+| Method       | Description                         |
+| ------------ | ----------------------------------- |
+| has(item)    | Checks if given item is in the set  |
+| add(item)    | Adds given item to the set.         |
+| values()     | Allows access to set elements.      |
+| delete(item) | Removes given element from the set. |
+| clear()      | Removes all elements from the set.  |
+
+* To iterate over a set you can use `for..of` or `forEach()` similar to arrays.
+```js
+const set = new Set( [2, 4, 6] );
+for (let i of set) {
+    console.log(i);
+}
+//1
+//2
+//3
+```
+## 2.9 - WeakSets :
+WeakSets are a type of set where all elements have to be an object. However WeakSets are not iterable.
+## 2.10 - Proxy Objects :
+
+```js
+new Proxy(target, handler);
+```
+
+# 3 Loops : 
+
+| for...of                                                                | for...in                                                                                                                    |
+| ----------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------- |
+| The for...of loop is used to iterate through the values of an iterable. | The for...in loop is used to iterate through the keys of an object.                                                         |
+| The for...of loop cannot be used to iterate over an object.             | You can use for...in to iterate over an iterable such arrays and strings but you should avoid using for...in for iterables. |
+
+# 4 Asynchronous JavaScript Actions : 
+Asynchronous functions can work seperately from the rest of the code. When they are in await status, compiler ignores them. Their code is performed once they are ready.
+## 4.1 Timeout Functions : 
+* `setTimeout(function,delay,...args)` : Calls a function after a delay. This function also returns a intervalID value. If function requires parameters they can be optionally written after delay.
+* `clearTimeout(intervalID)` : Cancels a timeout event with given intervalID.
+```js
+function displayTime(){
+    let dateTime= new Date();
+    let time = dateTime.toLocaleTimeString();
+    console.log(time);
+}
+let event = setTimeout(displayTime,1500); // Displays time after 1.5 seconds.
+clearTimeout(event); // Display time function is cancelled.
+```
+## 4.2 CallBack Function : 
+In JavaScript, we know that a function can be assigned to a value, which also means it can be send to a function.
+```js
+function doWhatISend(name, callBack){
+    console.log("I am "+name);
+    callBack();
+}
+function callMe(){
+    console.log("function was called");
+}
+doWhatISend("Umut"+callMe());
+// I am Umut
+//function was called
+```
+The callback function is helpful when you have to wait for a result that takes time. For example, the data coming from a server because it takes time for data to arrive.
+## 4.3 Promises : 
+In JavaScript `asynchronous` operations can be completed easily with the help of `promises`. A promise starts at `pending` state. If it is successful, the process ends with `fullfilled` state. If an error occurs during pending state, it will enter to `rejected` state.
+
+```js
+let promise = new Promise(function (resolve,reject){});
+```
+A promise requires a function. Optionally requires functions for `resolve()` and `reject()` states.
+* If the promise returns successfully, resolve function is triggered.
+* If an error occurs, reject function is called.
+```js
+const state = false;
+let promise = new Promise(function (resolve,reject){
+    if(state){
+        resolve("State is true");
+    }else{
+        reject("State is false");
+    }
+}) // Promise {<rejected>: "State is false."}
+```
+
+### 4.3.1 Promise Chaining : 
+Promise may require more complex handling, because of that we have `then()` , `catch()` and `finally()`.
+
+```js
+let promise = new Promise(function (resolve,reject){
+    resolve("State is true");
+}); // Promise {<rejected>: "State is false."}
+promise.then(function success(result){
+    console.log(result);
+})
+.catch(function fail(result){
+    console.log(result);
+})
+.finally(function doAnyway(){
+    console.log("Do anyway");
+});
+```
+
+### 4.3.2 Promise Chaining vs CallBack : 
+Both promise chaining and callback can be use for asynchronous tasks. However promise chaining has easier syntax.
+```js 
+//Promise Chaining
+api().then(function(result) {
+    return api2() ;
+}).then(function(result2) {
+    return api3();
+}).then(function(result3) {
+    // do work
+}).catch(function(error) {
+    //handle any error that may occur before this point 
+});
+//CallBack
+api(function(result){
+    api2(function(result2){
+        api3(function(result3){
+             // do work
+            if(error) {
+                // do something
+            }
+            else {
+                // do something
+            }
+        });
+    });
+});
+```
+
+### 4.3.3 Other Promise Methods : 
+
+| Method               | Description                                                               |
+| -------------------- | ------------------------------------------------------------------------- |
+| all(iterable)        | Waits for all promises to be resolved or any one to be rejected           |
+| allSettled(iterable) | Waits until all promises are either resolved or rejected                  |
+| any(iterable)        | Returns the promise value as soon as any one of the promises is fulfilled |
+| race(iterable)       | Wait until any of the promises is resolved or rejected                    |
+
+	
+	
+	
+## 4.4 async / await :
+`async` is a keyword for a function to represent this function returns a `promise`.
+```js
+async function name(...args){
+    console.log("Resolving");
+    return Promise.resolve(true);
+}
+f().then(function(result){
+    console.log(result)
+});
+// Resolving
+//
+// true
+```
+`await`is a keyword that is used inside a `async` function to wait asynchronous operation.
+
+```js
+// a promise
+let promise = new Promise(function (resolve, reject) {
+    setTimeout(function () {
+    resolve('Promise resolved')}, 4000); 
+});
+
+// async function
+async function asyncFunc() {
+
+    // wait until the promise resolves 
+    let result = await promise; 
+
+    console.log(result);
+    console.log('hello');
+}
+
+// calling the async function
+asyncFunc();
+```
+* In the example first the promise was sent. Then the `asyncFunc()` was called. Then the function had waited until the arrival of `result`.
+	
+## 4.5 setInterval : 
+`setInterval(function,delay)` behaves exactly like `setTimeout()`. Only difference is `setInterval()` repeats the process. setInterval returns an intervalID just like timeout function.
+
+```js
+setInterval(console.log("Hello"),5000); 
+```
+* In this example code prints "Hello" to console every 5 seconds.
+
+* To cancel this repeating process, use `clearInterval(intervalID)`.
+
+# 5 JSON
+JSON stands for JavaScript Object Notation. It is a file format to store data. Similar to JavaScript objects, JSON uses key-value pairs. JSON objects can be directly used just like JavaScript objects. 
+```js
+    const data = {
+        "name" : "Umut",
+        "age" : 21,
+        "university" : "Yildiz Technical University"
+    }
+    console.log(data.name); // Umut
+```
+* To convert JSON data to literal object, use `JSON.parse(jsonObject)` which returns a literal object from the parsed JSON.
+* To convert a literal object to JSON, use `JSON.stringfy(javaScriptObject)`.
+
+## 6 Strict Mode : 
+Strict mode prevents a variable to be used before declaring. Strict mode must be defined on top of the code(or an object). Strict mode can be temporarily activated by defining it inside a function or object.
+```js
+'use strict';
+```
+* Strict mode prevents deleting an object with `delete`.
+* Allows you to write more secure JavaScript.
+* Prevents any form of bad syntax and unrecognizable code.
+
