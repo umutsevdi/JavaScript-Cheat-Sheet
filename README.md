@@ -1,5 +1,4 @@
 # JavaScript-Cheat-Sheet
-# JavaScript Essentials -1
 
 # 1.0 - Declarations
 In JavaScript values are hold in declarations which operates similar to pointers. Each of those declerations are made with the type name followed by an identifier. In JavaScript a declaration can be made by one of three operators which are : 
