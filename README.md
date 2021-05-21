@@ -1,4 +1,4 @@
-# JavaScript-Cheat-Sheet
+# JavaScript Essentials -1
 
 # 1.0 - Declarations
 In JavaScript values are hold in declarations which operates similar to pointers. Each of those declerations are made with the type name followed by an identifier. In JavaScript a declaration can be made by one of three operators which are : 
@@ -299,6 +299,31 @@ function returnExample(){
     return { name : "Max" , value : 15 };
 }
 let x = returnExample();
+
+```
+
+#### 1.1.2.4 Function Defaults : 
+In ES2015 ( ES6 ) `Function Defaults` was introduced to JavaScript which allows you to create default properties for functions in case they are not defined when the function is called.
+
+```js
+function printEventMessage( name = "Elise" , message = "Happy Birthday" ) {
+    console.log(message +" "+ name + " !");
+}
+
+printEventMessage(); // Happy Birthday Elise !
+printEventMessage("Jack"); // Happy Birthday Jack !
+printEventMessage("Jack","How are you") // How are you Jack !
+```
+
+Function defaults can be used with each other : 
+
+```js
+function angle(x = 0.2, y = 1-x,  z = y-x) {
+    return z*y*x;
+}
+
+angle(); // 0.096
+```
 ### 1.1.2.5 - Arrays
 
 Arrays are a type of object that contains multiple objects. Unlike arrays in other programming 
@@ -342,7 +367,7 @@ a number, an object, a string and one function
 
 ```
 * To see the number of elements in the array use `arrayName.length`.
-#### 1.1.2.1.1 - Other Array Functions : 
+#### 1.1.2.5.1 - Other Array Functions : 
 
 | Method                  | Description                                                                                                                    |
 | ----------------------- | ------------------------------------------------------------------------------------------------------------------------------ |
@@ -382,7 +407,7 @@ a number, an object, a string and one function
         return typeof (key) == "number"; //returns an array that that has true for each element that is number and false if otherwise
     })
 ```
-#### 1.1.2.1.3 - Multidimensional Arrays	
+#### 1.1.2.5.3 - Multidimensional Arrays	
 * You can define multidimensional arrays like this : 
 ```js
     let studentsData = [['Jack', 24], ['Sara', 23], ['Peter', 24]];
@@ -399,16 +424,162 @@ a number, an object, a string and one function
     console.log(studentsData); //[["Jack", 24], ["Sara", 23,"hello"], ["Peter", 24]
 ```
 
-### 1.1.2.2 - Objects
-Will be added soon
-console.log('newArray :>> ', newArray);
+### 1.1.2.6 - Objects
+Unlike other programming languages, objects do not require a class to be created. They can be defined, assigned and changed freely.
 
-const myObj = { name: "name", id: 123213, testFunction: function (key) { return !(1 - key); } }
-console.log('myObj.testFunction(15); :>> ', myObj.testFunction(15));
+```js
+let Person={
+    name: "Elise",
+    age: 19,
+    mail : "elise@example.com"    
+};
+``` 
+In JavaScript an object can contain functions, variables and even other nested objects.
+```js
+const vector={
+    x:10,
+    y:7,
+    findDistance: function(){ 
+        return Math.sqrt( x**2 + y**2 ); 
+    },
+    end : {
+        x:4,
+        y:6
+    }
+}
+```
+Object properties are defined with key - value pairs. To reach one element you can use different methods.
+* `object.key` is called the dot notation.
+* `object["key"]` is called the bracket notation. Bracket notation requires a string which can be derived from another variable.
+```js
+const obj = {
+    name : "objectName",
+    id : 123,
+    number : 7
+};
 
+obj.name="Object 123";
+
+obj["id"]= 150;
+
+const referance = "number";
+obj[referance]=49;
+
+console.log( obj.name + "\t" + obj.id + "\t" + obj.number ); //Object 123   150 49
+
+```
+* `this` keyword is used when we need to reach to a property within the same object.
+* You can access object methods by calling the key. 
+  * `object.functionName` allows you to access the function data. Which displays the function in string.
+  * `object.functionName()` allows you to call the method.
+```js
+    const myObject = {
+        name : "objectName",
+        display : function () {
+            return "Object is "+ this.name;
+        }
+    }
+    console.log( myObject.display ); // f () { return "Object is " + this.name; }
+    console.log( myObject.display() ); // Object is objectName
+    
+```
+* To add a variable into an object simply add a key and a value.
+```js
+    const myObject = {};
+    myObject.name = "student";
+    myObject.hello = function () { console.log(" Hello World! "); }
+    myObject.hello(); // Hello World!
+```	
 	
-	
-	
-	
-	
-	
+### 1.1.2.6.1 - Constructors :
+* Constructor is used to define objects with predefined and reusable properties.
+
+```js
+function Person(name , job , age) {
+    this.name = name;
+    this.job = job;
+    this.age = age;
+
+    this.toString() = function () {
+        return "Person = [ name = "name+" job = "+job+" age = "+age+" ] ";
+    }
+}
+
+const person1 = new Person("Umut", "Student", 21);
+const person2 = new Person("John", "Politician", 49);
+console.log( person1.toString() ); // Person = [ name = Umut job = Student age = 21 ]
+```
+#### 1.1.2.6.1.1 Constructors vs Literal Objects : 
+* Literal objects are generally used to define a single object. The constructors are used to defined multiple objects.
+* Each object defined with constructor function is unique which means they can have different values for properties.
+* Which means defining a spesific function or a property for an object created with a constructor means, it will be unique to that instance.
+* However on literal objects it is different. Literal objects are clone of one other. They are just pointers to target the same object.
+
+```js 
+const object1 = {
+    name : "object 1",
+}
+var object2 = object1;
+object2.name = "object 2";
+console.log(object1.name + object2.name ); // object2 object2
+```
+
+#### 1.1.2.6.1.2 Adding Property to an Object :
+ * Lets add a function or a property to person1 fromprevious example.
+```js
+function Person(name , job , age) {
+    this.name = name;
+    this.job = job;
+    this.age = age;
+}
+const person1 = new Person("Umut", "Student", 21);
+const person2 = new Person("John", "Politician", 49);
+
+person1.myFunction = function() {
+    console.log( "Hi!" );
+}
+person1.myFunction(); // Hi
+person2.myFuntion(); // Uncaught TypeError: person2.myFunction is not a function
+```
+* As you see from the example constructors do not share properties added after the definition.
+
+#### 1.1.2.6.1.3 Prototypes :
+* If you would like to add a function or a property to all previously created objects, you can use `prototype`. Prototype allows you to make additions and changes to the constructor function.
+
+```js
+function Person(name , job , age) {
+    this.name = name;
+    this.job = job;
+    this.age = age;
+}
+const person1 = new Person("Umut", "Student", 21);
+const person2 = new Person("John", "Politician", 49);
+
+Person.prototype.myFunction = function() {
+    console.log( "Hi!" );
+}
+person1.myFunction(); // Hi
+person2.myFuntion(); // Hi
+
+const person3 = new Person("test","test",13);
+person3.myFunction(); // Hi
+```
+
+JavaScript has also built in constructors which are :
+* Object();
+* String(); 
+* Number();
+* Boolean(); 
+  
+However it is recommended to use primitive types instead of built-in constructors.
+
+#### 1.1.2.6.1.4 Classes :
+In ES2015(ES6) `class` was added to JavaScript which behaves the same with `class` from `Java` programming language.
+```js
+class Person {
+  constructor(name) {
+    this.name = name;
+  }
+}
+const person1 = new Person('John');
+```  
