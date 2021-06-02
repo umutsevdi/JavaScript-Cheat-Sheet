@@ -269,7 +269,7 @@ const myFunction = (key) => {
 
 }
 ```
-The difference : functions that are defined as an expressions can not be hoisted, meaning that calling them before the definition causes an error.
+The difference : functions that are defined as an expressions can not be hoisted, meaning that calling them before the definition causes an error. Arrow functions does not have binding entities which means keywords such as `this` and `super` can be called to get information from it's parent.
 
 ```js
 myExpressiveFunction(); // causes error
@@ -343,6 +343,25 @@ function calculate(num1){
 const result = calculate(4); 
 console.log(result); // function sum(num2){return num1+num2}
 console.log(result(5)); // 9
+```
+### 2.4.4 Function Shorthands :
+When a function has an object parameter, a spesific part of that object can be called. In following example the HTTP function from `request` package has a parameter called `response`. However this object is complex and in most cases all we need is the `body` of the response. So instead of calling it and then pointing to body we can directly call body.
+```js
+request.get(
+    'https:/www.example.com/',
+    function (error, response) {
+        if (!error) 
+            console.log(response.body);
+    }
+);
+//Second parameter is response so we can directly reach to the body
+request.get(
+    'https:/www.example.com/',
+    function (error, {body}) { 
+        if (!error) 
+            console.log(body);
+    }
+); 
 ```
 ## 2.5 - Arrays
 
@@ -598,7 +617,28 @@ console.log( ...obj2 ) // {x : 1 , y : 2 , z : 3}
     //age 15
     //id 123
     ```
-* Object values can be quickly assigned with `destructuring assignments`.
+### 2.6.0 Objects Destructuring and Property Shorthand
+* Properties in JavaScript can be quickly assigned if their names are identical.
+    ```js
+        const name = "Elise";
+        const userAge= 40;
+        const user = {
+            name,
+            age: userAge,
+            location: 'Philadelphia'
+        }
+        // 'name' was directly written to user because their names are matched. In other cases we still need ':' to define the object property.
+    ```
+* Destructuring is a way of accessing object properties without calling the object.
+    ```js
+    const person = {
+        name: 'Sara',
+        age: 25,
+        gender: 'female'    
+    }
+    const name = person.name;
+    ```
+* Object Destructuring can be easily done with an anonymus `{}` object properties. 
     ```js
     const person = {
         name: 'Sara',
@@ -607,6 +647,30 @@ console.log( ...obj2 ) // {x : 1 , y : 2 , z : 3}
     }
     let { name, age, gender } = person;
     ``` 
+* Objects destructuring doesn't process doesn't require identical names. If you would like to pick different variable names it can be done with `:` operator. And also not all variables have to be mentioned.
+    ```js
+    const person = {
+        name:"Sara",
+        age:20,
+        location: "United States of America",
+    }
+    const { age, location:address } = user;
+    ```
+* Object destructuring can be used in function arguments.
+    ```js
+    const product = {
+        label: 'Red notebook',
+        price: 3,
+        stock: 201,
+        salePrice: undefined,
+        rating: 4.2
+    }
+    function transaction(type, { label, stock }){
+        console.log(type, label, stock);
+    }
+    transaction('order', product);
+    //In this example despite the fact that we send entire object, the function received only label and stock.
+    ```
 ### 2.6.1 - Constructors :
 * Constructor is used to define objects with predefined and reusable properties.
 
