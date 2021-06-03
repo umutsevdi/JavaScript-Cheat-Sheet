@@ -1143,6 +1143,61 @@ Strict mode prevents a variable to be used before declaring. Strict mode must be
 * To render `handlebar views` use :
   ```js
     app.get( "/path", (res, req ) => {
-        res.render("template-file-name")
+        res.render("template")
     });
   ```
+* `render()` function can receive a second parameter which is an object. So we can use those elements in our `template.hbs` file in views folder.
+    ```js
+    const object = {
+        name : "My Web Page",
+        author : "Umut"
+    }
+    app.get( "/path", (res, req ) => {
+        res.render("template",object)
+    });
+    ```
+* Those values can be accessed from our handlebar files.
+    ```hbs
+    <!DOCTYPE html>
+    <html>
+        <head>
+            <link rel="stylesheet" href="./css/styles.css">
+            <script src="/js/app.js"></script>
+        </head>
+        <body>
+            <h1>This is {{name}} </h1>
+            <h2>My name is {{author}} </h2>
+            <img src="resources/1606043657721.jpg">
+        </body>
+    </html>
+    ```
+* Functions can be called from handlebar files too.
+    ```js
+    let num = 0
+    const renderObject = {
+            myFunction: function () {
+                num+=10;
+                return num;
+            }
+        }
+    app.get("/handlebars_test/", (req, res) => {
+        res.render("index", renderObject);
+    })
+    ```
+    ```hbs
+    <!DOCTYPE html>
+    <html>
+
+    <head></head>
+
+    <body>
+        <p>{{myFunction}}</p>
+    </body>
+
+    </html>
+    ```
+* `render()` looks up to `views` directory by default for the templates. But this can be changed with `set()` function. 
+    ```js 
+    app.set("views",path.join(__dirname,"../path/"));
+    ```
+    
