@@ -1066,7 +1066,7 @@ JSON stands for JavaScript Object Notation. It is a file format to store data. S
 * To convert JSON data to literal object, use `JSON.parse(jsonObject)` which returns a literal object from the parsed JSON.
 * To convert a literal object to JSON, use `JSON.stringfy(javaScriptObject)`.
 
-## 6 Strict Mode : 
+# 6 Strict Mode : 
 Strict mode prevents a variable to be used before declaring. Strict mode must be defined on top of the code(or an object). Strict mode can be temporarily activated by defining it inside a function or object.
 ```js
 'use strict';
@@ -1075,3 +1075,74 @@ Strict mode prevents a variable to be used before declaring. Strict mode must be
 * Allows you to write more secure JavaScript.
 * Prevents any form of bad syntax and unrecognizable code.
 
+# Express : Back End Framework for NodeJS
+
+* Express framework can be easily downloaded with `npm install express` command on a terminal that points to the directory of your project.
+* To create a web application, you need a few lines of code for the initialization.
+    ```js
+        const express = require("express"); 
+        const app = express(); // Express framework is originally a function itself.
+        const port = 3000;
+        app.listen(port, () => {
+            console.log("Server is up on port " + port);
+        }); //This command starts your server.
+    ``` 
+
+* To create a `path` on your server, you can use this line : 
+    ```js
+    app.get("/pathName", (request, response) => {
+        response.send("Response Content");
+    });
+    ```
+  * `send()` function can be used for various ways such as :
+   
+    ```js
+        const jsonObject = {
+            name : "Object Name",
+            id : 123456789,
+            phone : 53538512,
+            location : "Istanbul"
+        };
+
+        app.get("/json", (req, res) => {
+            res.send(JSON.stringify(jsonObject));
+            }
+        );
+
+        app.get("/html", (req, res) => {
+            res.send(" <h1>HTML Header</h1>");
+            }
+        );
+    ```
+* Express can also read and use `html` files in a directory. To do that :
+    ```js
+        const filePath = path.join(__dirname, "../public"))
+        app.use(express.static(filePath);
+    ```
+## 1 Server Side Rendering : 
+* When we would like to send static pages we can directly send the html file to the client. However it is not the case most of the times. Sometimes `server-side rendering` is preferred. Server-Side rendering is a method to create customized pages and send them to the client.
+* One known method to do that is using `handlebars`. Handlebars are `html` rendering tools.
+* You can use any handlebar to perform server side rendering. But to make things easier and compatible with `Express` we will be using `hbs library`. To install use `npm install hbs` command on your directory.
+* You can use this file structure on your project something like this :
+    ```js
+    projectName
+                ⌞node_modules
+                ⌞public
+                        ⌞css
+                        ⌞js     //Front end JavaScripts
+                        ⌞html
+                        ⌞resources
+                                    ⌞images
+                ⌞src
+                    ⌞app.js     // Your express scripts
+                ⌞views
+                    ⌞index.hbs  // Handlebars
+                ⌞package-lock.json
+                ⌞package.json             
+    ```
+* To render `handlebar views` use :
+  ```js
+    app.get( "/path", (res, req ) => {
+        res.render("template-file-name")
+    });
+  ```
